@@ -3,19 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VibeDive</title>
+    <meta name="description" content="매일 조금씩, 나만의 바이브를 알아가는 루틴 - VibeDive">
+    <title>VibeDive - DIVE INTO YOUR VIBE</title>
+    
+    <!-- Open Graph (OG) 태그: 공유 썸네일 설정 -->
+    <meta property="og:title" content="VibeDive - DIVE INTO YOUR VIBE">
+    <meta property="og:description" content="매일 조금씩, 나만의 바이브를 알아가는 루틴">
+    <meta property="og:image" content="./images/hero-bg.jpg">
+    <meta property="og:url" content="https://vibedivers.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VibeDive - DIVE INTO YOUR VIBE">
+    <meta name="twitter:description" content="매일 조금씩, 나만의 바이브를 알아가는 루틴">
+    <meta name="twitter:image" content="./images/hero-bg.jpg">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        html { scroll-behavior: smooth; }
-        footer .flex { gap: 12px; }
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
+        footer .flex { 
+            gap: 12px; 
+        }
 
         /* 모달 애니메이션 */
         #beta-modal {
             opacity: 0;
+            pointer-events: none;
             transition: opacity 0.3s ease-in-out;
         }
+        
         #beta-modal.show {
             opacity: 1;
+            pointer-events: auto;
         }
 
         /* Parallax 효과 */
@@ -24,12 +47,13 @@
             background-size: cover;
             background-position: center;
         }
+        
+        /* 접근성: 포커스 스타일 */
+        *:focus-visible {
+            outline: 2px solid #1D3E47;
+            outline-offset: 2px;
+        }
     </style>
-    <!-- Open Graph (OG) 태그: 공유 썸네일 설정 -->
-    <meta property="og:title" content="VIVEDIVE - DIVE INTO YOUR VIBE">
-    <meta property="og:description" content="매일 조금씩, 나만의 바이브를 알아가는 루틴">
-    <meta property="og:image" content="./images/hero-bg.jpg">
-    <meta property="og:url" content="https://vibedivers.com">
     <link rel="apple-touch-icon" sizes="57x57" href="./favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./favicon/apple-icon-72x72.png">
@@ -50,160 +74,324 @@
 </head>
 <body class="bg-gray-100 text-black">
     <!-- Navigation Bar: 페이지 상단 고정, 스크롤 시 배경색 변경하여 가독성 유지 -->
-    <nav id="navbar" class="fixed top-0 left-0 w-full text-white p-4 flex justify-between items-center z-50 backdrop-blur-md bg-opacity-70 transition-all duration-300">
-        <span class="text-xl font-bold">VIBEDIVE</span>
+    <nav id="navbar" class="fixed top-0 left-0 w-full text-white p-4 flex justify-between items-center z-50 backdrop-blur-md bg-opacity-70 transition-all duration-300" role="navigation" aria-label="메인 네비게이션">
+        <span class="text-xl font-bold" aria-label="VibeDive 로고">VIBEDIVE</span>
         <div id="nav-links" class="md:flex space-x-4">
-            <a href="#background-section" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline">소개</a>
-            <a href="#footer" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline">Contact</a>
-            <button id="beta-btn" class="bg-white text-[#1D3E47] border border-[#1D3E47] hover:bg-[#1D3E47] hover:text-white px-4 py-1.5 rounded-full text-[#1D3E47] text-sm font-semibold shadow-lg hover:scale-105 transition-all duration-300 ease-in-out">
-              <span class="hidden md:inline">Early Bird</span>
-              <span class="md:hidden">Early Bird</span>
+            <a href="#background-section" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline" aria-label="소개 섹션으로 이동">소개</a>
+            <a href="#footer" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline" aria-label="연락처 섹션으로 이동">Contact</a>
+            <button id="beta-btn" class="bg-white text-[#1D3E47] border border-[#1D3E47] hover:bg-[#1D3E47] hover:text-white px-4 py-1.5 rounded-full text-[#1D3E47] text-sm font-semibold shadow-lg hover:scale-105 transition-all duration-300 ease-in-out" aria-label="Early Bird 베타 신청 모달 열기">
+              Early Bird
             </button>
         </div>
     </nav>
 
     <!-- Beta Signup Modal -->
-    <div id="beta-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden">
-        <div class="bg-gradient-to-b from-[#1D3E47] to-[#0B1A22] text-white p-8 rounded-2xl shadow-2xl text-center max-w-md w-full relative">
-            <button id="close-modal" class="absolute top-4 right-4 text-gray-300 hover:text-white transition-all">✖</button>
-            <h2 class="text-3xl font-bold">바이브 다이브, <br>시작할 준비 되셨나요?</h2>
+    <div id="beta-modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 hidden" role="dialog" aria-labelledby="modal-title" aria-modal="true" aria-hidden="true">
+        <div class="bg-gradient-to-b from-[#1D3E47] to-[#0B1A22] text-white p-8 rounded-2xl shadow-2xl text-center max-w-md w-full relative mx-4">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-300 hover:text-white transition-all text-2xl leading-none w-8 h-8 flex items-center justify-center" aria-label="모달 닫기">✖</button>
+            <h2 id="modal-title" class="text-3xl font-bold">바이브 다이브, <br>시작할 준비 되셨나요?</h2>
             <p class="text-gray-300 mt-4">가장 먼저 새로운 경험을 만나보세요.</p>
-            <input type="email" id="email" class="mt-6 p-3 w-full border-none rounded-lg text-gray-900 focus:ring-2 focus:ring-[#F8F9FA]" placeholder="이메일을 입력하세요" required>
-            <p id="error-msg" class="text-red-400 text-sm hidden mt-2">올바른 이메일을 입력해주세요.</p>
-            <button id="submit-btn" class="mt-6 bg-gradient-to-r from-[#2D6975] to-[#1D3E47] hover:from-[#1D3E47] hover:to-[#0B1A22] px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all duration-300">Early Bird 등록하기</button>
+            <form id="beta-form" class="mt-6" novalidate>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    class="mt-6 p-3 w-full border-none rounded-lg text-gray-900 focus:ring-2 focus:ring-[#F8F9FA]" 
+                    placeholder="이메일을 입력하세요" 
+                    required
+                    aria-label="이메일 주소 입력"
+                    aria-describedby="error-msg"
+                    aria-invalid="false"
+                >
+                <p id="error-msg" class="text-red-400 text-sm hidden mt-2" role="alert" aria-live="polite">올바른 이메일을 입력해주세요.</p>
+                <button 
+                    type="submit"
+                    id="submit-btn" 
+                    class="mt-6 bg-gradient-to-r from-[#2D6975] to-[#1D3E47] hover:from-[#1D3E47] hover:to-[#0B1A22] px-6 py-3 rounded-full text-white font-semibold shadow-lg transition-all duration-300 w-full"
+                    aria-label="Early Bird 베타 신청 제출"
+                >
+                    Early Bird 등록하기
+                </button>
+            </form>
         </div>
     </div>
   
     <!-- Hero Section -->
-    <section class="hero-section relative w-full h-[90vh] bg-cover bg-center flex flex-col items-center justify-center text-white text-center opacity-100" style="background-image: url('./images/hero-bg.jpg');">
-        <div class="absolute inset-0 bg-[#1D3E47] opacity-40"></div>
+    <section class="hero-section relative w-full h-[90vh] bg-cover bg-center flex flex-col items-center justify-center text-white text-center opacity-100" style="background-image: url('./images/hero-bg.jpg');" aria-label="메인 히어로 섹션">
+        <div class="absolute inset-0 bg-[#1D3E47] opacity-40" aria-hidden="true"></div>
         <h1 class="text-4xl md:text-5xl font-bold relative z-10">Feel the tide, <br> Dive into your vibe</h1>
         <p class="mt-8 text-lg relative z-10">지금, 나의 바이브에 다이빙 해 볼까요?<br>3... 2... 1...</p>
-        <a href="#" id="hero-cta" class="mt-6 px-8 py-4 rounded-full text-white text-lg font-semibold relative z-10 bg-gradient-to-r from-[#1D3E47] to-[#0B1A22] bg-opacity-80 backdrop-blur-md transition-all duration-500 ease-in-out">숨 참고, VibeDive!</a>
+        <button id="hero-cta" class="mt-6 px-8 py-4 rounded-full text-white text-lg font-semibold relative z-10 bg-gradient-to-r from-[#1D3E47] to-[#0B1A22] bg-opacity-80 backdrop-blur-md transition-all duration-500 ease-in-out cursor-pointer" aria-label="베타 신청 모달 열기">숨 참고, VibeDive!</button>
     </section>
     
     <!-- Features Section -->
-    <section id="background-section" class="py-36 text-center bg-gradient-to-b from-white to-[#1D3E47]/75 text-gray-900">
-        <h2 class="text-2xl font-bold text-[#1D3E47]">매일 조금씩, <br> 나만의 바이브를 알아가는 루틴</h2>
+    <section id="background-section" class="py-36 text-center bg-gradient-to-b from-white to-[#1D3E47]/75 text-gray-900" aria-labelledby="features-title">
+        <h2 id="features-title" class="text-2xl font-bold text-[#1D3E47]">매일 조금씩, <br> 나만의 바이브를 알아가는 루틴</h2>
         <div class="mt-16 flex flex-wrap justify-center md:flex-row md:space-x-16 flex-col space-y-8 md:space-y-0 items-center">
-            <div class="text-center max-w-s">
-                <span class="text-4xl">✔️</span>
+            <article class="text-center max-w-s">
+                <span class="text-4xl" aria-hidden="true">✔️</span>
                 <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">바이브 체크</h3>
                 <p class="text-gray-700 text-base">하루 1분, 지금 내 바이브 기록하기</p>
-            </div>
-            <div class="text-center max-w-s">
-                <span class="text-4xl">📈</span>
+            </article>
+            <article class="text-center max-w-s">
+                <span class="text-4xl" aria-hidden="true">📈</span>
                 <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">감정 분석 리포트</h3>
                 <p class="text-gray-700 text-base">나도 몰랐던 감정 패턴을 알아보기</p>
-            </div>
-            <div class="text-center max-w-s">
-                <span class="text-4xl">📋</span>
+            </article>
+            <article class="text-center max-w-s">
+                <span class="text-4xl" aria-hidden="true">📋</span>
                 <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">맞춤형 바이브 가이드</h3>
                 <p class="text-gray-700 text-base">내 바이브에 딱 맞는 실천 가이드 제공</p>
-            </div>
+            </article>
         </div>
     </section>
     
     <!-- Footer -->
-    <footer id="footer" class="py-24 bg-gradient-to-b from-[#142B36] via-[#0B1A22] to-black text-white text-center">
-        <div class="flex justify-center space-x-4 mb-3">
-            <a href="https://www.instagram.com/vibedive.rs"><img src="./icons/instagram-icon.png" alt="Instagram" class="w-6"></a>
-            <a href="https://youtu.be/FJslPXPsz_Y?si=VQuOL5aazhVSlJgk"><img src="./icons/youtube-icon.png" alt="YouTube" class="w-6"></a>
-            <a href="mailto:vibedive.official@gmail.com"><img src="./icons/email-icon.png" alt="Email" class="w-6"></a>
+    <footer id="footer" class="py-24 bg-gradient-to-b from-[#142B36] via-[#0B1A22] to-black text-white text-center" role="contentinfo">
+        <div class="flex justify-center space-x-4 mb-3" role="list">
+            <a href="https://www.instagram.com/vibedive.rs" target="_blank" rel="noopener noreferrer" aria-label="Instagram 프로필 열기" role="listitem">
+                <img src="./icons/instagram-icon.png" alt="Instagram" class="w-6">
+            </a>
+            <a href="https://youtu.be/FJslPXPsz_Y?si=VQuOL5aazhVSlJgk" target="_blank" rel="noopener noreferrer" aria-label="YouTube 채널 열기" role="listitem">
+                <img src="./icons/youtube-icon.png" alt="YouTube" class="w-6">
+            </a>
+            <a href="mailto:vibedive.official@gmail.com" aria-label="이메일 보내기" role="listitem">
+                <img src="./icons/email-icon.png" alt="Email" class="w-6">
+            </a>
         </div>
         <p class="text-sm">© 2025 VIBEDIVE. All rights reserved.</p>
     </footer>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // 네비게이션 바 스크롤 시 배경색 변경
-        const navbar = document.getElementById("navbar");
-        const heroSection = document.querySelector(".hero-section");
-        heroSection.style.backgroundPositionY = "0px";
-
-        window.addEventListener("scroll", function() {
-            let scrollPosition = window.scrollY;
-
-            heroSection.style.transition = "background-position 0.2s ease-out";
-            heroSection.style.backgroundPositionY = `-${scrollPosition * 0.15}px`;
-
-            if (scrollPosition > 50) {
-                navbar.classList.add("bg-[#1D3E47]", "shadow-md");
-            } else {
-                navbar.classList.remove("bg-[#1D3E47]", "shadow-md");
-            }
-        });
-
-        const betaModal = document.getElementById("beta-modal");
-
+    (function() {
+        'use strict';
+        
+        // 상수 정의
+        const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const API_URL = "https://script.google.com/macros/s/AKfycbwG9BU0cjnzrYWSlXg1ltpo6P4DMv7Ldf8OnNuS_Fq8QfOtiaRyIScZhp6UjU4fNnLI/exec";
+        const SCROLL_THRESHOLD = 50;
+        const PARALLAX_SPEED = 0.15;
+        const MODAL_ANIMATION_DELAY = 10; // setTimeout을 requestAnimationFrame으로 변경하기 전 임시값
+        
+        // DOM 요소 캐싱
+        const elements = {
+            navbar: document.getElementById("navbar"),
+            heroSection: document.querySelector(".hero-section"),
+            betaModal: document.getElementById("beta-modal"),
+            betaForm: document.getElementById("beta-form"),
+            emailInput: document.getElementById("email"),
+            errorMsg: document.getElementById("error-msg"),
+            submitBtn: document.getElementById("submit-btn"),
+            closeModal: document.getElementById("close-modal"),
+            betaBtn: document.getElementById("beta-btn"),
+            heroCta: document.getElementById("hero-cta")
+        };
+        
+        // 유틸리티 함수
+        function validateEmail(email) {
+            return EMAIL_PATTERN.test(email);
+        }
+        
+        function showError(message) {
+            elements.errorMsg.textContent = message;
+            elements.errorMsg.classList.remove("hidden");
+            elements.emailInput.setAttribute("aria-invalid", "true");
+        }
+        
+        function hideError() {
+            elements.errorMsg.classList.add("hidden");
+            elements.emailInput.setAttribute("aria-invalid", "false");
+        }
+        
+        function resetForm() {
+            elements.emailInput.value = "";
+            hideError();
+        }
+        
+        // 모달 관리
         function showModal() {
-            betaModal.classList.remove("hidden");
-            setTimeout(() => betaModal.classList.add("show"), 300);
+            elements.betaModal.classList.remove("hidden");
+            elements.betaModal.setAttribute("aria-hidden", "false");
+            requestAnimationFrame(() => {
+                elements.betaModal.classList.add("show");
+            });
+            // 포커스를 모달 내부로 이동
+            elements.emailInput.focus();
         }
         
         function hideModal() {
-            document.getElementById("email").value = "";
-            betaModal.classList.remove("show");
-            setTimeout(() => betaModal.classList.add("hidden"), 300);
+            elements.betaModal.classList.remove("show");
+            elements.betaModal.setAttribute("aria-hidden", "true");
+            setTimeout(() => {
+                elements.betaModal.classList.add("hidden");
+                resetForm();
+            }, 300);
         }
-
-        // BETA 버튼 동작 추가
-        const betaBtn = document.getElementById("beta-btn");
-        if (betaBtn) betaBtn.addEventListener("click", showModal);
         
-        // CTA 버튼 효과 추가
-        const heroCta = document.getElementById("hero-cta");
-        if (heroCta) {
-            heroCta.addEventListener("mouseover", function() {
-                this.innerText = "꼬르르르르르르르륵";
+        // 스크롤 이벤트 핸들러 (throttle 적용)
+        let scrollTimeout;
+        function handleScroll() {
+            if (scrollTimeout) return;
+            
+            scrollTimeout = requestAnimationFrame(() => {
+                const scrollPosition = window.scrollY;
+                
+                // Parallax 효과
+                if (elements.heroSection) {
+                    elements.heroSection.style.transition = "background-position 0.2s ease-out";
+                    elements.heroSection.style.backgroundPositionY = `-${scrollPosition * PARALLAX_SPEED}px`;
+                }
+                
+                // 네비게이션 바 배경색 변경
+                if (elements.navbar) {
+                    if (scrollPosition > SCROLL_THRESHOLD) {
+                        elements.navbar.classList.add("bg-[#1D3E47]", "shadow-md");
+                    } else {
+                        elements.navbar.classList.remove("bg-[#1D3E47]", "shadow-md");
+                    }
+                }
+                
+                scrollTimeout = null;
+            });
+        }
+        
+        // 이메일 제출 처리
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const email = elements.emailInput.value.trim();
+            
+            // 이메일 유효성 검사
+            if (!email) {
+                showError("이메일을 입력해주세요.");
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                showError("올바른 이메일을 입력해주세요.");
+                return;
+            }
+            
+            hideError();
+            
+            // 제출 버튼 비활성화 (중복 제출 방지)
+            elements.submitBtn.disabled = true;
+            elements.submitBtn.textContent = "등록 중...";
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email: email })
+                });
+                
+                // no-cors 모드에서는 response를 읽을 수 없지만, 
+                // 요청은 성공적으로 전송되었을 것으로 간주
+                alert("베타 신청이 완료되었습니다!");
+                hideModal();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("이메일 저장 중 오류가 발생했습니다. 다시 시도해주세요.");
+            } finally {
+                elements.submitBtn.disabled = false;
+                elements.submitBtn.textContent = "Early Bird 등록하기";
+            }
+        }
+        
+        // CTA 버튼 호버 효과
+        function setupCtaHover() {
+            if (!elements.heroCta) return;
+            
+            const originalText = elements.heroCta.textContent;
+            const hoverText = "꼬르르르르르르르륵";
+            
+            elements.heroCta.addEventListener("mouseenter", function() {
+                this.textContent = hoverText;
                 this.classList.add("opacity-50", "backdrop-blur-lg", "scale-110");
             });
             
-            heroCta.addEventListener("mouseleave", function() {
-                this.innerText = "숨 참고, VibeDive!";
+            elements.heroCta.addEventListener("mouseleave", function() {
+                this.textContent = originalText;
                 this.classList.remove("opacity-50", "backdrop-blur-lg", "scale-110");
             });
-            
-            heroCta.addEventListener("click", showModal);
         }
-
-        // 모달 닫기 버튼 기능 추가
-        const closeModal = document.getElementById("close-modal");
-        if (closeModal) closeModal.addEventListener("click", hideModal);
-
-        // 이메일 형식 검사
-        const emailInput = document.getElementById("email");
-        const submitBtn = document.getElementById("submit-btn");
-        const errorMsg = document.getElementById("error-msg");
-
-        // 이메일 수집 API 연동
-        submitBtn.addEventListener("click", function(event) {
-            event.preventDefault();
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailPattern.test(emailInput.value)) {
-                errorMsg.classList.remove("hidden");
-                errorMsg.textContent = "올바른 이메일을 입력해주세요.";
-            } else {
-                errorMsg.classList.add("hidden");
-                fetch("https://script.google.com/macros/s/AKfycbwG9BU0cjnzrYWSlXg1ltpo6P4DMv7Ldf8OnNuS_Fq8QfOtiaRyIScZhp6UjU4fNnLI/exec", {
-                    method: "POST",
-                    mode: "no-cors",  // CORS 문제 방지
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: emailInput.value })
-                })
-                .then(response => response.text())
-                .then(data => {
-                    console.log("서버 응답:", data);
-                    alert("베타 신청이 완료되었습니다!");
-                    document.getElementById("beta-modal").classList.add("hidden");
-                })
-                .catch(error => {
-                    alert("이메일 저장 중 오류가 발생했습니다. 다시 시도해주세요.");
-                    console.error("Error:", error);
+        
+        // ESC 키로 모달 닫기
+        function handleEscapeKey(event) {
+            if (event.key === "Escape" && !elements.betaModal.classList.contains("hidden")) {
+                hideModal();
+            }
+        }
+        
+        // 모달 외부 클릭 시 닫기
+        function handleModalBackdropClick(event) {
+            if (event.target === elements.betaModal) {
+                hideModal();
+            }
+        }
+        
+        // 이벤트 리스너 등록
+        function initEventListeners() {
+            // 스크롤 이벤트
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            
+            // 모달 관련 이벤트
+            if (elements.betaBtn) {
+                elements.betaBtn.addEventListener("click", showModal);
+            }
+            
+            if (elements.heroCta) {
+                elements.heroCta.addEventListener("click", showModal);
+            }
+            
+            if (elements.closeModal) {
+                elements.closeModal.addEventListener("click", hideModal);
+            }
+            
+            if (elements.betaForm) {
+                elements.betaForm.addEventListener("submit", handleSubmit);
+            }
+            
+            if (elements.betaModal) {
+                elements.betaModal.addEventListener("click", handleModalBackdropClick);
+            }
+            
+            // 키보드 이벤트
+            document.addEventListener("keydown", handleEscapeKey);
+            
+            // CTA 호버 효과
+            setupCtaHover();
+            
+            // 이메일 입력 시 실시간 유효성 검사
+            if (elements.emailInput) {
+                elements.emailInput.addEventListener("input", function() {
+                    if (this.value.trim() && !validateEmail(this.value.trim())) {
+                        this.setAttribute("aria-invalid", "true");
+                    } else {
+                        this.setAttribute("aria-invalid", "false");
+                        hideError();
+                    }
                 });
             }
-        });
-    });
+        }
+        
+        // 초기화
+        function init() {
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", initEventListeners);
+            } else {
+                initEventListeners();
+            }
+            
+            // 초기 parallax 위치 설정
+            if (elements.heroSection) {
+                elements.heroSection.style.backgroundPositionY = "0px";
+            }
+        }
+        
+        init();
+    })();
     </script>
 </body>
 </html>
