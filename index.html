@@ -77,7 +77,7 @@
     <nav id="navbar" class="fixed top-0 left-0 w-full text-white p-4 flex justify-between items-center z-50 backdrop-blur-md bg-opacity-70 transition-all duration-300" role="navigation" aria-label="메인 네비게이션">
         <span class="text-xl font-bold" aria-label="VibeDive 로고">VIBEDIVE</span>
         <div id="nav-links" class="md:flex space-x-4">
-            <a href="#background-section" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline" aria-label="소개 섹션으로 이동">소개</a>
+            <a href="#app-preview" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline" aria-label="앱 미리보기 섹션으로 이동">앱 미리보기</a>
             <a href="#footer" class="px-4 py-2 rounded-full text-sm transition-all duration-300 ease-in-out hover:scale-105 hover:text-[#F8F9FA] hidden md:inline" aria-label="연락처 섹션으로 이동">Contact</a>
             <button id="beta-btn" class="bg-white text-[#1D3E47] border border-[#1D3E47] hover:bg-[#1D3E47] hover:text-white px-4 py-1.5 rounded-full text-[#1D3E47] text-sm font-semibold shadow-lg hover:scale-105 transition-all duration-300 ease-in-out" aria-label="Early Bird 베타 신청 모달 열기">
               Early Bird
@@ -124,25 +124,95 @@
         <button id="hero-cta" class="mt-6 px-8 py-4 rounded-full text-white text-lg font-semibold relative z-10 bg-gradient-to-r from-[#1D3E47] to-[#0B1A22] bg-opacity-80 backdrop-blur-md transition-all duration-500 ease-in-out cursor-pointer" aria-label="베타 신청 모달 열기">숨 참고, VibeDive!</button>
     </section>
     
-    <!-- Features Section -->
-    <section id="background-section" class="py-36 text-center bg-gradient-to-b from-white to-[#1D3E47]/75 text-gray-900" aria-labelledby="features-title">
-        <h2 id="features-title" class="text-2xl font-bold text-[#1D3E47]">매일 조금씩, <br> 나만의 바이브를 알아가는 루틴</h2>
-        <div class="mt-16 flex flex-wrap justify-center md:flex-row md:space-x-16 flex-col space-y-8 md:space-y-0 items-center">
-            <article class="text-center max-w-s">
-                <span class="text-4xl" aria-hidden="true">✔️</span>
-                <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">바이브 체크</h3>
-                <p class="text-gray-700 text-base">하루 1분, 지금 내 바이브 기록하기</p>
-            </article>
-            <article class="text-center max-w-s">
-                <span class="text-4xl" aria-hidden="true">📈</span>
-                <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">감정 분석 리포트</h3>
-                <p class="text-gray-700 text-base">나도 몰랐던 감정 패턴을 알아보기</p>
-            </article>
-            <article class="text-center max-w-s">
-                <span class="text-4xl" aria-hidden="true">📋</span>
-                <h3 class="text-xl font-semibold mt-2 text-[#1D3E47]">맞춤형 바이브 가이드</h3>
-                <p class="text-gray-700 text-base">내 바이브에 딱 맞는 실천 가이드 제공</p>
-            </article>
+    
+    <!-- App Preview Section -->
+    <section id="app-preview" class="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#1D3E47]/75 to-white text-gray-900" aria-labelledby="preview-title">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+            <h2 id="preview-title" class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center text-[#1D3E47] mb-8 sm:mb-12 md:mb-16">
+                VIBEDIVE로 만나는<br class="md:hidden"> 나만의 바이브 여정
+            </h2>
+            
+            <!-- 입력 선택 화면 -->
+            <div class="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+                <div class="flex flex-col md:flex-row items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                    <div class="w-full sm:w-4/5 md:w-2/5 max-w-[280px] sm:max-w-sm">
+                        <img 
+                            src="./images/input-selection.png" 
+                            alt="메시지 또는 음성 입력 선택 화면" 
+                            class="w-full rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="w-full md:w-3/5 text-center md:text-left px-2 sm:px-0">
+                        <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1D3E47] mb-2 sm:mb-3 md:mb-4">
+                            오늘, 당신의 바이브는 어땠나요?
+                        </h3>
+                        <p class="text-sm sm:text-base md:text-lg text-gray-700 mb-2 sm:mb-3 md:mb-4 leading-relaxed">
+                            편한 방식으로 선택하세요.<br class="hidden sm:inline">
+                            메시지든, 목소리든 모두 환영합니다.
+                        </p>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                            상황에 맞게 텍스트나 음성 중 편한 방법을 선택해 <br>
+                            오늘의 감정을 기록할 수 있어요.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 채팅 인터페이스 -->
+            <div class="mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+                <div class="flex flex-col md:flex-row-reverse items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                    <div class="w-full sm:w-4/5 md:w-2/5 max-w-[280px] sm:max-w-sm">
+                        <img 
+                            src="./images/chat-interface.png" 
+                            alt="VibeDive 채팅 인터페이스" 
+                            class="w-full rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="w-full md:w-3/5 text-center md:text-left px-2 sm:px-0">
+                        <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1D3E47] mb-2 sm:mb-3 md:mb-4">
+                            메시지로, 목소리로<br class="hidden sm:inline">
+                            편하게 대화해보세요
+                        </h3>
+                        <p class="text-sm sm:text-base md:text-lg text-gray-700 mb-2 sm:mb-3 md:mb-4 leading-relaxed">
+                            오늘의 감정을 자유롭게 표현하고<br class="hidden sm:inline">
+                            기록해보세요.
+                        </p>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                            텍스트 메시지나 음성으로 하루의 바이브를 기록할 수 있어요. <br>
+                            AI가 당신의 감정을 듣고 함께 탐색해갑니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 주간 바이브 기록 -->
+            <div class="mb-10 sm:mb-12 md:mb-16 lg:mb-20">
+                <div class="flex flex-col md:flex-row items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+                    <div class="w-full sm:w-4/5 md:w-2/5 max-w-[280px] sm:max-w-sm">
+                        <img 
+                            src="./images/weekly-vibe-chart.png" 
+                            alt="주간 바이브 다이빙 기록 그래프" 
+                            class="w-full rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl md:shadow-2xl"
+                            loading="lazy"
+                        >
+                    </div>
+                    <div class="w-full md:w-3/5 text-center md:text-left px-2 sm:px-0">
+                        <h3 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1D3E47] mb-2 sm:mb-3 md:mb-4">
+                            이번주, 당신의 바이브 다이빙 기록이에요
+                        </h3>
+                        <p class="text-sm sm:text-base md:text-lg text-gray-700 mb-2 sm:mb-3 md:mb-4 leading-relaxed">
+                            깊으면 깊은대로, 얕으면 얕은대로<br class="hidden sm:inline">
+                            모두 아름답습니다.
+                        </p>
+                        <p class="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed">
+                            매일의 감정을 기록하고 주간 그래프로 패턴을 확인해보세요. <br>
+                            일주일의 바이브 변화를 한눈에 볼 수 있어요.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
